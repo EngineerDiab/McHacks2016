@@ -99,8 +99,8 @@ angular.module('skwad.socketFactory', ['skwad.settingsFactory'])
               }, function(err) {
                   // error
                   console.log("error getting geoLocation: " + err.toString());
-                  console.log("Error Code: " + err.code());
-                  console.log("message: " + err.message());
+                  console.log("Error Code: " + err.code);
+                  console.log("message: " + err.message);
 
               });
 

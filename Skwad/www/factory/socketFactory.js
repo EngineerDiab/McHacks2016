@@ -94,6 +94,20 @@ angular.module('skwad.socketFactory', ['skwad.settingsFactory'])
               initialize();
 
               socket.emit('sync request refused', data);
+          },
+
+          //active (boolean value), prerequisite_data (object)
+          syncHook: function(active, prerequisite_data) {
+              this.activeHook = active;
+              this.prerequisite_data = prerequisite_data;
+          },
+          syncPrerequisites: function(userID, facebookHook, twitterHook, linkedinHook, instagramHook, contactHook) {
+              this.theirUserID = userID;
+              this.facebookHook = facebookHook;
+              this.twitterHook = twitterHook;
+              this.linkedinHook = linkedinHook;
+              this.instagramHook = instagramHook;
+              this.contactHook = contactHook;
           }
 
       }

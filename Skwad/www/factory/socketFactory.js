@@ -9,6 +9,7 @@ angular.module('skwad.socketFactory', ['skwad.settingsFactory'])
       var nearby = null;
       var usernames = [];
       var addToList = null;
+      var clearList = null;
 
       var geo = {
           latitude: null,
@@ -30,8 +31,9 @@ angular.module('skwad.socketFactory', ['skwad.settingsFactory'])
           socket.on('new nearby user', function(data) {
 
               console.log("received new user " + JSON.stringify(data));
-  
-              for (var user in usernames) {
+
+              for (var index in usernames) {
+                  var user = usernames[index];
                   if (user.fullnames == data.userID) {
                       //Guy is already being displayed
                       return;
@@ -65,9 +67,13 @@ angular.module('skwad.socketFactory', ['skwad.settingsFactory'])
           addListHandler: function(callback) {
               addToList = callback;
           },
+          addClearListHandler: function(callback) {
+              clearList = callback;
+          },
           requestNearbyUsers: function() {
 
               usernames = [];
+              clearList();
 
               console.log("requesting nearby users");
 
@@ -83,7 +89,7 @@ angular.module('skwad.socketFactory', ['skwad.settingsFactory'])
                   console.log("Emitting request nearby");
                   socket.emit('request nearby');
 
-                  }, function(err) {
+              }, function(err) {
                   // error
 
               });

@@ -27,7 +27,6 @@ angular.module('skwad.accounts', [])
 
     $scope.accounts = accounts;
 
-
     function instagramLogin(){
       $cordovaOauth.instagram("6dac6947026e410f887ff37c3666e71b", ['relationships']).then(function(result){
         console.log(JSON.stringify(result));

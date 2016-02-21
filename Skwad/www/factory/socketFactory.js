@@ -17,8 +17,10 @@ angular.module('skwad.socketFactory', ['skwad.settingsFactory'])
 
       function initialize() {
 
+          console.log("initializing connection");
           socket = io("142.157.80.44:13033");
 
+          console.log("emitting setup");
           socket.emit('setup', {
             userID: settingsFactory.getUsername(),
             latitude: geo.latitude,
@@ -27,17 +29,17 @@ angular.module('skwad.socketFactory', ['skwad.settingsFactory'])
 
           socket.on('new nearby user', function(data) {
 
-            console.log("received new user " + JSON.stringify(data));
+              console.log("received new user " + JSON.stringify(data));
+  
+              for (var user in usernames) {
+                  if (user.fullnames == data.userID) {
+                      //Guy is already being displayed
+                      return;
+                  }
+              }
 
-            for (var user in usernames) {
-                if (user.fullnames == data.userID) {
-                    //Guy is already being displayed
-                    return;
-                }
-            }
-
-            usernames.push({"fullnames": data.userID});
-            addToList(data);
+              usernames.push({"fullnames": data.userID});
+              addToList(data);
 
           });
 
@@ -74,8 +76,7 @@ angular.module('skwad.socketFactory', ['skwad.settingsFactory'])
               .then(function (position) {
                   geo.latitude = position.coords.latitude;
                   geo.longitude = position.coords.longitude;
-
-                  console.log(settingsFactory.getUsername());
+                  console.log(JSON.stringify(geo));
 
                   initialize();
 

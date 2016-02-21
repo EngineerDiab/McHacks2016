@@ -2,8 +2,9 @@
   <ion-content>
     <div class="list">
 
-      <a class="item item-avatar" ng-repeat="accounts in accounts">
-        <h2>{{accounts.account}}</h2>
+
+      <a class="item item-avatar" ng-repeat="acc in accounts" ng-click = "acc.auth()">
+        <h2>{{acc.account}}</h2>
       </a>
 
 

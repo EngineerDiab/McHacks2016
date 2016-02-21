@@ -7,6 +7,7 @@ angular.module('skwad.socketFactory', ['skwad.settingsFactory'])
   .factory('socketFactory', function(settingsFactory, $cordovaGeolocation) {
       var socket = null;
       var nearby = null;
+      var usernames = [];
       var addToList = null;
 
       var geo = {
@@ -28,6 +29,14 @@ angular.module('skwad.socketFactory', ['skwad.settingsFactory'])
 
             console.log("received new user " + JSON.stringify(data));
 
+            for (var user in usernames) {
+                if (user.fullnames == data.userID) {
+                    //Guy is already being displayed
+                    return;
+                }
+            }
+
+            usernames.push({"fullnames": data.userID});
             addToList(data);
 
           });
@@ -55,6 +64,8 @@ angular.module('skwad.socketFactory', ['skwad.settingsFactory'])
               addToList = callback;
           },
           requestNearbyUsers: function() {
+
+              usernames = [];
 
               console.log("requesting nearby users");
 

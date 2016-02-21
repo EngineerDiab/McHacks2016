@@ -4,11 +4,9 @@
 angular.module('skwad.accounts', [])
 
   .controller('AccountsCtrl', function($scope, $cordovaOauth) {
-<<<<<<< HEAD
+
     function twitterLogin (){
       cordovaOauth.twitter("43KDzSuzdGWAployL1BjOxsTw","ZPGYMjbTuX4a9ftwhH7BLEw4EY7abCNrBO0XygpVcxrW2DRe4x");
-=======
->>>>>>> diab
 
     }
     var accounts = [

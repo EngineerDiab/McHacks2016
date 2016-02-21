@@ -9,7 +9,7 @@ angular.module('skwad.settingsFactory', [])
 
     return {
       loadUsername: function(){
-        var username = window.localStorage[usernameToken]
+        var username = window.localStorage[usernameToken];
         if(username){
           this.setUsername(username);
         }

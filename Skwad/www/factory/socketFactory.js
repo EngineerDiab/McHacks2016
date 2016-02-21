@@ -20,7 +20,7 @@ angular.module('skwad.socketFactory', ['skwad.settingsFactory'])
       function initialize() {
 
           console.log("initializing connection");
-          socket = io("142.157.80.44:13033");
+          socket = io("142.157.80.18:13033");
 
           console.log("emitting setup");
           socket.emit('setup', {

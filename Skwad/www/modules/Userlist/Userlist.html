@@ -5,7 +5,7 @@
   <ion-content>
     <div class="list">
       <a class="item item-avatar" ng-repeat="fullnames in usernames">
-        <h2>{{fullnames.fullname}}</h2>
+        <h2 ng-click="setUpSync('{{fullnames.fullname}}')">{{fullnames.fullname}}</h2>
       </a>
     </div>
     <button class="button button-full button-assertive" ng-click="refreshUser()">

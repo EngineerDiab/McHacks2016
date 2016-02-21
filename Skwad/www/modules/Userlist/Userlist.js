@@ -30,5 +30,8 @@ angular.module('skwad.userlist', ['skwad.socketFactory'])
     };
 
     $scope.refreshUser = socketFactory.requestNearbyUsers;
+    $scope.setUpSync = function (str) {
+        console.log(str);
+    }
 
   });

@@ -9,15 +9,21 @@ angular.module('skwad.userlist', ['skwad.socketFactory'])
     socketFactory.addListHandler(function(data) {
         console.log(JSON.stringify(data));
 
-        $scope.usernames.push({
-            "fullnames": data.userID
-        });
+        $scope.usernames = data;
+
+        console.log("$scope.usernames = " + JSON.stringify(data));
 
     });
 
     socketFactory.addClearListHandler(function() {
-
+        console.log("clearing list");
+        $scope.usernames = [];
     });
+
+    socketFactory.addScopeApply(function() {
+      //FROMAGE
+        $scope.$apply();
+    })
 
     $scope.viewAccounts = function(){
       $location.path('accounts');
